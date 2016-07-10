@@ -1,0 +1,39 @@
+body {
+	height: 640px;
+	width: 1200px;
+	background-image: url(../images/pokemon_arena.png);
+}
+.col-md-12 {
+	text-align: center;
+	height: 150px;
+	font-size: 1.5em;
+}
+.col-md-6 {
+	font-size: 1.5em;
+}
+.logo {
+	width: 250px;
+}
+h1 {
+	font-family: Arial, sans-serif;
+	font-size: 3em;
+	color: rgb(50,100,255);
+	position: relative;
+	top: -30px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+#attacker {
+	text-align: center;
+}
+#defender {
+	text-align: center;
+}
+.character {
+	background-color: white;
+	width: 100px;
+	border-radius: 100px;
+	border: 1px solid black;
+	box-shadow: 0 0 0 10px red;
+	margin: 20px;
+}
