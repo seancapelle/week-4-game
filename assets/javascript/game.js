@@ -20,18 +20,54 @@ $(document).ready(function(){
 // 		attacker.appendTo("#attacker");
 
 // 	})
+
+//Character stats
 var bulbHP = 100;
-var charHP = 100;
-var pikHP = 100;
-var squirtHP = 100;
-var attackerHP = 0;
-var defenderHP = 0;
 var bulbAttack = 10;
-var charAttack = 10;
-var pikAttack = 10;
-var squirAttack = 10;
+document.querySelector('#bulbHP').innerHTML = bulbHP;
+document.querySelector('#bulbAttack').innerHTML = bulbAttack;
+
+var charHP = 100;
+var charAttack = 20;
+document.querySelector('#charHP').innerHTML = charHP;
+document.querySelector('#charAttack').innerHTML = charAttack;
+
+var pikHP = 100;
+var pikAttack = 30;
+document.querySelector('#pikHP').innerHTML = pikHP;
+document.querySelector('#pikAttack').innerHTML = pikAttack;
+
+var squirtHP = 40;
+var squirtAttack = 10;
+document.querySelector('#squirtHP').innerHTML = squirtHP;
+document.querySelector('#squirtAttack').innerHTML = squirtAttack;
+
+
+//Attacker stats
+var attackerHP = 0;
 var attackerAttack = 0;
+var attackerArray = [];
+var attackerHPArray = [];
+var attackerAttackArray = [];
+
+//Defender stats
+var defenderHP = 0;
 var defenderAttack = 0;
+var defenderArray = [];
+var defenderHPArray = [];
+var defenderAttackArray = [];
+
+
+//How User attacks
+var attackMode = function(){
+	attackerAttack = attackerAttackArray[0];
+
+	$('#attack').on('click', function(){
+		attackerAttack +=5;
+		document.querySelector(attackerArray[0]).innerHTML = attackerAttack;
+		console.log("attackerAttack = " + attackerAttack);
+	})
+}
 
 //User picks Attacker
 var attackerPick = function(){
@@ -48,8 +84,9 @@ var attackerPick = function(){
 	//If Bulbasaur picked as Attacker
 	$('#Bulbasaur').on('click', function(){
 		var attacker = $('#Bulbasaur');
-		attackerHP = bulbHP;
-		attackerAttack = bulbAttack;
+		attackerArray.push('#bulbAttack');
+		attackerHPArray.push(bulbHP);
+		attackerAttackArray.push(bulbAttack);
 		attacker.appendTo('#attacker');
 		benchPush();
 	})
@@ -57,8 +94,9 @@ var attackerPick = function(){
 	//If Charmander picked as Attacker
 	$('#Charmander').on('click', function(){
 		var attacker = $('#Charmander');
-		attackerHP = charHP;
-		attackerAttack = charAttack;
+		attackerArray.push('#charAttack');
+		attackerHPArray.push(charHP);
+		attackerAttackArray.push(charAttack);
 		attacker.appendTo('#attacker');
 		benchPush();
 	})
@@ -66,8 +104,9 @@ var attackerPick = function(){
 	//If Pikachu picked as Attacker
 	$('#Pikachu').on('click', function(){
 		var attacker = $('#Pikachu');
-		attackerHP = pikHP;
-		attackerAttack = pikAttack;
+		attackerArray.push('#pikAttack');
+		attackerHPArray.push(pikHP);
+		attackerAttackArray.push(pikAttack);
 		attacker.appendTo('#attacker');
 		benchPush();
 	})
@@ -75,8 +114,9 @@ var attackerPick = function(){
 	//If Squirtle picked as Attacker
 	$('#Squirtle').on('click', function(){
 		var attacker = $('#Squirtle');
-		attackerHP = squirtHP;
-		attackerAttack = squirAttack;
+		attackerArray.push('#squirtAttack');
+		attackerHPArray.push(squirtHP);
+		attackerAttackArray.push(squirtAttack);
 		attacker.appendTo('#attacker');
 		benchPush();
 	})
@@ -113,15 +153,16 @@ var defenderPick = function(){
 	$('#Squirtle').on('click', function(){
 		var defender = $('#Squirtle');
 		defenderHP = squirtHP;
-		defenderAttack = squirAttack;
+		defenderAttack = squirtAttack;
 		defender.appendTo('#defender');
 	})
 
+	attackMode();
 }
 
-//User picks Attacker
+//User picks Attacker/ Starts game
 attackerPick();
-console.log(attackerHP + attackerAttack);
+
 
 
 //End below
