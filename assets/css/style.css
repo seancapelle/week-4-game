@@ -7,7 +7,7 @@ body {
 }
 .col-md-12 {
 	text-align: center;
-	height: 150px;
+	height: 180px;
 	font-size: 1.5em;
 }
 .col-md-4 {
@@ -15,24 +15,28 @@ body {
 	text-align: center;
 }
 .logo {
-	width: 250px;
+	width: 200px;
 }
 h1 {
 	font-family: Arial, sans-serif;
-	font-size: 3em;
+	font-size: 2.5em;
 	color: rgb(50,100,255);
 	text-shadow: -4px 1px rgb(50,50,100);
 	position: relative;
 	top: -30px;
 	margin-top: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
+}
+h2 {
+	font-family: Arial, sans-serif;
+	color: white;
+	text-shadow: 1px 1px black;
 }
 #console {
-	width: 200px;
+	width: 245px;
 	height: 100px;
 	border-radius: 20px;
 	background-color: rgba(0,0,0,.5);
-	margin: 20px;
 	padding: 10px;
 	box-sizing: border-box;
 	font-size: .5em;
@@ -41,9 +45,14 @@ h1 {
 	text-align: left;
 	word-wrap: break-word;
 	overflow: scroll;
+	margin: auto;
 }
 .name {
+	position: relative;
+	top: 5px;
 	font-family: arial, sans-serif;
+	color: white;
+	text-shadow: 1px 1px black;
 }
 .character {
 	background-color: white;
@@ -70,14 +79,12 @@ h1 {
 	height: 128px;
 }
 .name {
-	position: relative;
-	top: 5px;
+
 }
 .hp {
 	width: 40px;
 	height: 40px;
 	background-color: white;
-	/*border: 10px solid red;*/
 	border-radius: 100px;
 	z-index: 2;
 	float: right;
@@ -89,7 +96,6 @@ h1 {
 	width: 40px;
 	height: 40px;
 	background-color: white;
-	/*border: 10px solid red;*/
 	border-radius: 100px;
 	float: left;
 	z-index: 2;
@@ -102,4 +108,10 @@ span {
 	position: relative;
 	top: 8px;
 	left: -1px;
+}
+#attackButton {
+	margin: 10px;
+}
+#resetButton {
+	margin: 10px;
 }

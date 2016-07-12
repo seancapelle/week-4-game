@@ -83,20 +83,20 @@ $('#resetButton').on('click', function(){
 	squirtReset.appendTo("#pick");
 
 	//Reset stats
-	var bulbHP = 100;
-	var bulbAttack = 10;
+	var bulbHP = 90;
+	var bulbAttack = 20;
 	document.querySelector('#bulbHP').innerHTML = bulbHP;
 	document.querySelector('#bulbAttack').innerHTML = bulbAttack;
-	var charHP = 100;
-	var charAttack = 20;
+	var charHP = 80;
+	var charAttack = 30;
 	document.querySelector('#charHP').innerHTML = charHP;
 	document.querySelector('#charAttack').innerHTML = charAttack;
-	var pikHP = 100;
-	var pikAttack = 30;
+	var pikHP = 70;
+	var pikAttack = 40;
 	document.querySelector('#pikHP').innerHTML = pikHP;
 	document.querySelector('#pikAttack').innerHTML = pikAttack;
 	var squirtHP = 100;
-	var squirtAttack = 40;
+	var squirtAttack = 10;
 	document.querySelector('#squirtHP').innerHTML = squirtHP;
 	document.querySelector('#squirtAttack').innerHTML = squirtAttack;
 
