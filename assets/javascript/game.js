@@ -22,26 +22,26 @@ $(document).ready(function(){
 // 	})
 
 //Bulbasaur stats
-var bulbHP = 100;
-var bulbAttack = 10;
+var bulbHP = 90;
+var bulbAttack = 20;
 document.querySelector('#bulbHP').innerHTML = bulbHP;
 document.querySelector('#bulbAttack').innerHTML = bulbAttack;
 
 //Charmander stats
-var charHP = 100;
-var charAttack = 20;
+var charHP = 80;
+var charAttack = 30;
 document.querySelector('#charHP').innerHTML = charHP;
 document.querySelector('#charAttack').innerHTML = charAttack;
 
 //Pikachu stats
-var pikHP = 100;
-var pikAttack = 30;
+var pikHP = 70;
+var pikAttack = 40;
 document.querySelector('#pikHP').innerHTML = pikHP;
 document.querySelector('#pikAttack').innerHTML = pikAttack;
 
 //Squirtle stats
 var squirtHP = 100;
-var squirtAttack = 40;
+var squirtAttack = 10;
 document.querySelector('#squirtHP').innerHTML = squirtHP;
 document.querySelector('#squirtAttack').innerHTML = squirtAttack;
 
@@ -53,6 +53,7 @@ var attackerAttack = 0;
 var attackerArray = [];
 var attackerHPArray = [];
 var attackerAttackArray = [];
+var attackerHurt = [];
 
 //Defender stats
 var defenderName = [];
@@ -61,7 +62,7 @@ var defenderAttack = 0;
 var defenderArray = [];
 var defenderHPArray = [];
 var defenderAttackArray = [];
-
+var defenderHurt = [];
 
 // var attack = 0;
 
@@ -104,11 +105,13 @@ $('#resetButton').on('click', function(){
 	attackerArray = 0;
 	attackerHPArray = 0;
 	attackerAttackArray = 0;
+	attackerHurt = 0;
 
 	defenderName = 0;
 	defenderArray = 0;
 	defenderHPArray = 0;
 	defenderAttackArray = 0;
+	defenderHurt = 0;
 	
 	//Start over
 	attackerPick();
@@ -122,15 +125,24 @@ var nextDefender = function(){
 
 //When Defender attacked
 var defendMode = function(attackerAttack){
-	
-	//DEFENDER HP IS ALWAYS 100!!!
 
+	console.log("In defendMode, this is defenderHurt " + defenderHurt[0]);
 	defenderHP = defenderHPArray[0];
-	console.log("In defendMode, defenderHP is " + defenderHP);
+	defenderAttack = defenderAttackArray[0];
 
 	var lifeTotal =  defenderHP - attackerAttack;
+	
+	defenderHPArray.splice(0,1,lifeTotal);
 	document.querySelector(defenderArray[0]).innerHTML = lifeTotal;
-	console.log("Defender HP is " + lifeTotal);
+	
+	//defenderArray[0]
+
+	defenderAttack +=2;
+
+	defenderAttackArray.splice(0,1,defenderAttack);
+	document.querySelector(defenderHurt[0]) = defenderAttack;
+
+	$('#console').append("<p>" + defenderName[0] + " hit back with " + defenderAttack + " damage!</p>");
 
 	if(lifeTotal < 1){
 
@@ -142,6 +154,8 @@ var defendMode = function(attackerAttack){
 		//Pick new Defender
 		nextDefender();
 	}
+
+	attackMode();
 }
 
 //How User attacks
@@ -149,16 +163,19 @@ var attackMode = function(){
 	attackerAttack = attackerAttackArray[0];
 
 	// $("#console").clear();
-	$('#console').append("<p>Click Attack!</p>");
+	$('#console').append("Click Attack!");
 
+	//Attack button clicked
 	$('#attackButton').on('click', function(){
-		attackerAttack +=5;
+		attackerAttack +=2
 		document.querySelector(attackerArray[0]).innerHTML = attackerAttack;
+
+		//$("#attack .profile").animate({left: '250px'});
 		
 		// $("#console").clear();
-		$('#console').append(attackerName[0] + "<p> hit </p>" + defenderName[0] + "<p> for </p>" + attackerAttack + "<p> damage!</p>");
+		$('#console').append("<p>" + attackerName[0] + " hit " + defenderName[0] + " for " + attackerAttack + " damage!</p>");
 
-		attackMode.delay(800);
+		// attackMode.delay(1000);
 		
 		defendMode(attackerAttack);
 	})
@@ -184,13 +201,15 @@ var attackerPick = function(){
 	$('#Bulbasaur').on('click', function(){
 		var attacker = $('#Bulbasaur');
 		attackerName.push("Bulbasaur");
+		attackerAttackArray.push(bulbAttack);
 		attackerArray.push('#bulbAttack');
 		attackerHPArray.push(bulbHP);
-		attackerAttackArray.push(bulbAttack);
+		attackerHurt.push('#bulbHP');
+		
 		attacker.appendTo('#attacker');
 		
 		$('#console').empty();
-		$('#console').append("<p>You picked </p>" + attackerName[0] + "!");
+		$('#console').append("<p>You picked " + attackerName[0] + "!</p>");
 		
 		benchPush();
 	})
@@ -199,13 +218,15 @@ var attackerPick = function(){
 	$('#Charmander').on('click', function(){
 		var attacker = $('#Charmander');
 		attackerName.push("Charmander");
+		attackerAttackArray.push(charAttack);
 		attackerArray.push('#charAttack');
 		attackerHPArray.push(charHP);
-		attackerAttackArray.push(charAttack);
+		attackerHurt.push('#charHP');
+		
 		attacker.appendTo('#attacker');
 		
 		$('#console').empty();
-		$('#console').append("<p>You picked </p>" + attackerName[0] + "!");
+		$('#console').append("<p>You picked " + attackerName[0] + "!</p>");
 		
 		benchPush();
 	})
@@ -214,13 +235,15 @@ var attackerPick = function(){
 	$('#Pikachu').on('click', function(){
 		var attacker = $('#Pikachu');
 		attackerName.push("Pikachu");
+		attackerAttackArray.push(pikAttack);
 		attackerArray.push('#pikAttack');
 		attackerHPArray.push(pikHP);
-		attackerAttackArray.push(pikAttack);
+		attackerHurt.push('#pikHP');
+		
 		attacker.appendTo('#attacker');
 		
 		$('#console').empty();
-		$('#console').append("<p>You picked </p>" + attackerName[0] + "!");
+		$('#console').append("<p>You picked " + attackerName[0] + "!</p>");
 		
 		benchPush();
 	})
@@ -229,13 +252,15 @@ var attackerPick = function(){
 	$('#Squirtle').on('click', function(){
 		var attacker = $('#Squirtle');
 		attackerName.push("Squirtle");
+		attackerAttackArray.push(squirtAttack);
 		attackerArray.push('#squirtAttack');
 		attackerHPArray.push(squirtHP);
-		attackerAttackArray.push(squirtAttack);
+		attackerHurt.push('#squirtHP');
+		
 		attacker.appendTo('#attacker');
 		
 		$('#console').empty();
-		$('#console').append("<p>You picked </p>" + attackerName[0] + "!");
+		$('#console').append("<p>You picked " + attackerName[0] + "!</p>");
 		
 		benchPush();
 	})
@@ -244,52 +269,76 @@ var attackerPick = function(){
 //User picks Defender
 var defenderPick = function(){
 
-	
-	$('#console').append("<p>Who will </p>" + attackerName[0] + "<p> fight?")
-
-	// defenderPick.delay(200);
+	//NEED TO PAUSE HERE!!!
+	$('#console').append("<p>Who will " + attackerName[0] + " fight?</p>")
 
 	//If Bulbasaur picked as Defender
 	$('#Bulbasaur').on('click', function(){
-		var defender = $('#Bulbasaur.profile');
+		var defender = $('#Bulbasaur');
 		defenderName.push("Bulbasaur");
-		defenderArray.push('#bulbHP');
-		defenderHPArray.push(bulbHP);
 		defenderAttackArray.push(bulbAttack);
+		defenderHurt.push('#bulbAttack');
+		defenderHPArray.push(bulbHP);
+		defenderArray.push('#bulbHP');
+		
 		defender.appendTo('#defender');
+
+		$('#console').empty();
+		$('#console').append("<p> " + attackerName[0] + " will fight " + defenderName[0] + "!</p>");
+
+		attackMode();
 	})
 
 	//If Charmander picked as Defender
 	$('#Charmander').on('click', function(){
 		var defender = $('#Charmander');
 		defenderName.push("Charmander");
-		defenderArray.push('#charHP');
-		defenderHPArray.push(charHP);
 		defenderAttackArray.push(charAttack);
+		defenderHurt.push('#charAttack');
+		defenderHPArray.push(charHP);
+		defenderArray.push('#charHP');
+		
 		defender.appendTo('#defender');
+
+		$('#console').empty();
+		$('#console').append("<p> " + attackerName[0] + " will fight " + defenderName[0] + "!</p>");
+
+		attackMode();
 	})
 
 	//If Pikachu picked as Defender
 	$('#Pikachu').on('click', function(){
 		var defender = $('#Pikachu');
 		defenderName.push("Pikachu");
-		defenderArray.push('#pikHP');
-		defenderHPArray.push(pikHP);
 		defenderAttackArray.push(pikAttack);
+		defenderHurt.push('#pikAttack');
+		defenderHPArray.push(pikHP);
+		defenderArray.push('#pikHP');
+		
 		defender.appendTo('#defender');
+
+		$('#console').empty();
+		$('#console').append("<p> " + attackerName[0] + " will fight " + defenderName[0] + "!</p>");
+
+		attackMode();
 	})
 
 	//If Squirtle picked as Defender
 	$('#Squirtle').on('click', function(){
 		var defender = $('#Squirtle');
 		defenderName.push("Squirtle");
-		defenderArray.push('#squirtHP');
-		defenderHPArray.push(squirtHP);
 		defenderAttackArray.push(squirtAttack);
+		defenderHurt.push('#squirtAttack');
+		defenderHPArray.push(squirtHP);
+		defenderArray.push('#squirtHP');
+		
 		defender.appendTo('#defender');
-	})
 
-	attackMode();
+		$('#console').empty();
+		$('#console').append("<p> " + attackerName[0] + " will fight " + defenderName[0] + "!</p>");
+
+		attackMode();
+	})
 }
 
 //User picks Attacker/ Starts game
