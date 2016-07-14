@@ -1,25 +1,25 @@
 
 //Bulbasaur stats
+var bulbAttack = 6;
 var bulbHP = 90;
-var bulbAttack = 20;
 document.querySelector('#bulbHP').innerHTML = bulbHP;
 document.querySelector('#bulbAttack').innerHTML = bulbAttack;
 
 //Charmander stats
+var charAttack = 8;
 var charHP = 80;
-var charAttack = 30;
 document.querySelector('#charHP').innerHTML = charHP;
 document.querySelector('#charAttack').innerHTML = charAttack;
 
 //Pikachu stats
+var pikAttack = 10;
 var pikHP = 70;
-var pikAttack = 40;
 document.querySelector('#pikHP').innerHTML = pikHP;
 document.querySelector('#pikAttack').innerHTML = pikAttack;
 
 //Squirtle stats	
+var squirtAttack = 2;
 var squirtHP = 100;
-var squirtAttack = 10;
 document.querySelector('#squirtHP').innerHTML = squirtHP;
 document.querySelector('#squirtAttack').innerHTML = squirtAttack;
 
@@ -208,6 +208,8 @@ var defenderPick = function(){
 
 //How User attacks
 var attackMode = function(){
+
+	console.log("In attackMode");
 	
 	//Set attack values equal to the character stats
 	attackerAttack = attackerAttackArray[0];
@@ -233,7 +235,7 @@ var attackMode = function(){
 		$('#console').append("<p>" + attackerName[0] + " hit " + defenderName[0] + " for " + attackerAttack + " damage!</p>");	
 
 		//Defender attack back
-		defenderAttack +=2;
+		defenderAttack +=1;
 		document.querySelector(defenderArray[0]).innerHTML = defenderAttack;
 
 		//Attacker hit and update HP display
@@ -245,6 +247,7 @@ var attackMode = function(){
 
 	if(defenderHPArray[0] < 1){
 
+		$('#console').append("<p>" + defenderName[0] + " fainted! Select a new defender.</p>");
 		//Removes Defender from #defender
 		$('#defender .profile').remove();
 		defender = 0;
@@ -257,6 +260,12 @@ var attackMode = function(){
 		//Pick new Defender
 		//DEFENDER IS APPENDING TO ATTACKER!!!
 		defenderPick();
+	}
+	
+	if(attackerHPArray[0] < 1){
+
+		$('#attacker .profile').remove();
+		$('#console').append("<p>" + attackerName[0] + " fainted! Press Reset to try again.</p>");
 	}
 
 	})
