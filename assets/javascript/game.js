@@ -1,4 +1,7 @@
 
+//CREATE OBJECTS
+
+
 //Bulbasaur stats
 var bulbAttack = 6;
 var bulbHP = 90;
