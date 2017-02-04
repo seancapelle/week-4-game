@@ -137,6 +137,7 @@ var benchPush = function(){
 var defenderPick = function(){
 
 	console.log("In defenderPick");
+	console.log(defenderArray);
 
 	$('#console').append("<p>Who will " + attackerName[0] + " fight?</p>")
 
@@ -249,19 +250,19 @@ var attackMode = function(){
 		$('#console').append("<p>" + defenderName[0] + " hit back with " + defenderAttack + " damage!</p>");
 
 	if(defenderHPArray[0] < 1){
-
+console.log("DefenderArray " + defenderArray);
 		$('#console').append("<p>" + defenderName[0] + " fainted! Select a new defender.</p>");
 		//Removes Defender from #defender
 		$('#defender .profile').remove();
 		defender = 0;
-		defenderName = 0;
-		defenderArray = 0;
-		defenderHPArray = 0;
-		defenderAttackArray = 0;
-		defenderHP = 0;
-
+		defenderName.splice(0,1); 
+		defenderArray.splice(0,1); 
+		defenderHPArray.splice(0,1) 
+		defenderAttackArray.splice(0,1) 
+		defenderHP.splice(0,1); 
+		console.log("DefenderArray " + defenderArray);
+		
 		//Pick new Defender
-		//DEFENDER IS APPENDING TO ATTACKER!!!
 		defenderPick();
 	}
 	
